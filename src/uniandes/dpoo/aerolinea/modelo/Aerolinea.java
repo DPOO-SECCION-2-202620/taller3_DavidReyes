@@ -222,6 +222,11 @@ public class Aerolinea
     public void cargarAerolinea( String archivo, String tipoArchivo ) throws TipoInvalidoException, IOException, InformacionInconsistenteException
     {
         // TODO implementar
+    	IPersistenciaAerolinea cargador =
+                CentralPersistencia.getPersistenciaAerolinea(
+                        tipoArchivo );
+
+        cargador.cargarAerolinea( archivo, this );
     }
 
     /**
@@ -234,6 +239,11 @@ public class Aerolinea
     public void salvarAerolinea( String archivo, String tipoArchivo ) throws TipoInvalidoException, IOException
     {
         // TODO implementar
+        IPersistenciaAerolinea cargador =
+                CentralPersistencia.getPersistenciaAerolinea(
+                        tipoArchivo );
+
+        cargador.salvarAerolinea( archivo, this );
     }
 
     /**

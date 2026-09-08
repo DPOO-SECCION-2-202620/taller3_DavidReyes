@@ -68,7 +68,7 @@ public class ClienteCorporativo extends Cliente
         JSONObject jobject = new JSONObject( );
         jobject.put( "nombreEmpresa", this.nombreEmpresa );
         jobject.put( "tamanoEmpresa", this.tamanoEmpresa );
-        jobject.put( "tipo", CORPORATIVO );
+        jobject.put( "tipoCliente", CORPORATIVO );
         return jobject;
     }
 }

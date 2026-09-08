@@ -127,12 +127,13 @@ public class PersistenciaTiquetesJson implements IPersistenciaTiquetes
             // Acá también se utilizaron dos estrategias para salvar los clientes.
             // Para los clientes naturales, esta clase extrae la información de los objetos y la organiza para que luego sea salvada.
             // Para los clientes corporativos, la clase ClienteCorporativo hace todo lo que está en sus manos para persistir un cliente
-            if( ClienteNatural.NATURAL.equals( cliente.getTipoCliente( ) ) )
-            {
-                JSONObject jCliente = new JSONObject( );
-                jCliente.put( NOMBRE_CLIENTE, cliente.getIdentificador( ) );
-                jClientes.put( jCliente );
-            }
+        	if( ClienteNatural.NATURAL.equals( cliente.getTipoCliente( ) ) )
+        	{
+        	    JSONObject jCliente = new JSONObject( );
+        	    jCliente.put( NOMBRE_CLIENTE, cliente.getIdentificador( ) );
+        	    jCliente.put( TIPO_CLIENTE, ClienteNatural.NATURAL );
+        	    jClientes.put( jCliente );
+        	}
             else
             {
                 ClienteCorporativo cc = ( ClienteCorporativo )cliente;
