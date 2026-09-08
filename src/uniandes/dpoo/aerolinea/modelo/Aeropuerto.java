@@ -13,9 +13,75 @@ import uniandes.dpoo.aerolinea.exceptions.AeropuertoDuplicadoException;
 public class Aeropuerto
 {
     // TODO completar
+	
+	//atributos
+	private String codigo;
+	private static Set<String> codigosUtilizados = new HashSet<String>();
+	private double latitud;
+	private double longitud;
+	private String nombre;
+	private String nombreCiudad;
+	private static final int RADIO_TERRESTRE = 6371;
     
+	//metodos
+	
+	//ctor
+	/**
+	 * Construye un nuevo aeropuerto e inicializa sus atributos con los valores dados El código del nuevo aeropuerto
+	 * debe quedar almacenado en el conjunto codigosUtilizados para mostrar que ya existe un aeropuerto con ese código
+	 * @param nombre
+	 * @param codigo
+	 * @param nombreCiudad
+	 * @param latitud
+	 * @param longitud
+	 */
+	public Aeropuerto(String nombre, String codigo,  String nombreCiudad, double latitud, double longitud)
+	throws AeropuertoDuplicadoException{
+		
+	    if (codigosUtilizados.contains(codigo))
+	    {
+	        throw new AeropuertoDuplicadoException(codigo);
+	    }
+		
+		//inicializar atributos
+		this.nombre = nombre;
+		this.codigo = codigo;
+		this.nombreCiudad = nombreCiudad;
+		this.latitud = latitud;
+		this.longitud = longitud;
+		
+		//alamcenar codigo del nuevo aeropuerto
+		codigosUtilizados.add(codigo);
 
-    /**
+	}
+	
+	//getters
+    public String getCodigo() {
+		return codigo;
+	}
+
+
+	public double getLatitud() {
+		return latitud;
+	}
+
+
+	public double getLongitud() {
+		return longitud;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public String getNombreCiudad() {
+		return nombreCiudad;
+	}
+
+
+	/**
      * Este método calcula la distancia *aproximada* entre dos aeropuertos. Hay fórmulas más precisas pero esta es suficientemente buena para el caso de la aerolínea.
      * 
      * Este método asume que las coordenadas (latitud y longitud) de los aeropuertos están expresadas en la forma que las hace más cercanas. Si no es así, la distancia entre
@@ -45,5 +111,9 @@ public class Aeropuerto
 
         return ( int )Math.round( distancia );
     }
+
+
+
+
 
 }

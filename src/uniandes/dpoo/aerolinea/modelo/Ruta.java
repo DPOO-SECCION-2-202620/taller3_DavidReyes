@@ -6,6 +6,46 @@ package uniandes.dpoo.aerolinea.modelo;
 public class Ruta
 {
     // TODO completar
+	
+	//atributos
+	private String horaSalida;
+	private String horaLlegada;
+	private String codigoRuta;
+	private Aeropuerto destino;
+	private Aeropuerto origen;
+	
+	//metodos
+	
+	//ctor
+    public Ruta(Aeropuerto origen, Aeropuerto destino, String horaSalida, String horaLlegada, String codigoRuta) {
+		super();
+		this.horaSalida = horaSalida;
+		this.horaLlegada = horaLlegada;
+		this.codigoRuta = codigoRuta;
+		this.destino = destino;
+		this.origen = origen;
+	}
+	
+    //getters
+	public String getHoraSalida() {
+		return horaSalida;
+	}
+
+	public String getHoraLlegada() {
+		return horaLlegada;
+	}
+
+	public String getCodigoRuta() {
+		return codigoRuta;
+	}
+
+	public Aeropuerto getDestino() {
+		return destino;
+	}
+
+	public Aeropuerto getOrigen() {
+		return origen;
+	}
 
 
     /**
@@ -21,7 +61,8 @@ public class Ruta
         return minutos;
     }
 
-    /**
+
+	/**
      * Dada una cadena con una hora y minutos, retorna las horas.
      * 
      * Por ejemplo, para la cadena '715' retorna 7.
@@ -32,6 +73,23 @@ public class Ruta
     {
         int horas = Integer.parseInt( horaCompleta ) / 100;
         return horas;
+    }
+    
+    /**
+     * Calcula la duración esperada del vuelo en minutos
+     * @return
+     */
+    public int getDuracion() {
+    	int minutosSalida = getHoras(horaSalida) * 60 + getMinutos(horaSalida);
+    	int minutosLlegada = getHoras(horaLlegada) * 60 + getMinutos(horaLlegada);
+    	
+    	if (minutosLlegada < minutosSalida) {
+    		minutosLlegada +=24 * 60;
+    	}
+    	
+    	return minutosLlegada - minutosSalida;
+    	
+    	
     }
 
     
